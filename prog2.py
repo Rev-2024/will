@@ -18,14 +18,14 @@ plt.ylabel('Number of Customers')
 plt.legend(title='Repeat Purchase')
 plt.show()
 ### Create a crosstab
-##ct = pd.crosstab(df['Satisfaction'], df['RepeatPurchase'])
+ct = pd.crosstab(df['Satisfaction'], df['RepeatPurchase'])
 ##
 ### Plot stacked bar chart
-##ct.plot(kind='bar', stacked=True, color=['salmon', 'lightgreen'], figsize=(8, 5))
+ct.plot(kind='bar', stacked=True, color=['red', 'green'], figsize=(8, 5))
 ##
-##plt.title('Stacked Bar Chart: Satisfaction vs Repeat Purchase')
-##plt.xlabel('Customer Satisfaction')
-##plt.ylabel('Number of Customers')
-##plt.legend(title='Repeat Purchase')
-##plt.show()##
+plt.title('Stacked Bar Chart: Satisfaction vs Repeat Purchase')
+plt.xlabel('Customer Satisfaction')
+plt.ylabel('Number of Customers')
+plt.legend(title='Repeat Purchase')
+plt.show()
 
