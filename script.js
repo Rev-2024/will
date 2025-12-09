@@ -18,12 +18,13 @@ const fileList = [
     { name: "requirements.txt", type: "txt", size: "56 B" }
 ];
 
-const grid = document.getElementById('fileGrid');
+const programsGrid = document.getElementById('programsGrid');
+const datasetsGrid = document.getElementById('datasetsGrid');
 const searchInput = document.getElementById('searchInput');
 const filterBtns = document.querySelectorAll('.filter-btn');
 
 function getIcon(type) {
-    switch(type) {
+    switch (type) {
         case 'py': return '🐍';
         case 'csv': return '📊';
         case 'txt': return '📄';
@@ -31,47 +32,59 @@ function getIcon(type) {
     }
 }
 
-function renderFiles(files) {
-    grid.innerHTML = '';
-    files.forEach((file, index) => {
-        const card = document.createElement('div');
-        card.className = 'file-card';
-        card.style.animationDelay = `${index * 50}ms`;
-        
-        card.innerHTML = `
-            <div class="card-header">
-                <div class="file-icon">${getIcon(file.type)}</div>
-                <div class="file-info">
-                    <h3>${file.name}</h3>
-                    <div class="file-meta">
-                        <span class="badge badge-${file.type}">${file.type.toUpperCase()}</span>
-                        <span>${file.size}</span>
-                    </div>
+function createCard(file, index) {
+    const card = document.createElement('div');
+    card.className = 'file-card';
+    card.style.animationDelay = `${index * 50}ms`;
+
+    card.innerHTML = `
+        <div class="card-header">
+            <div class="file-icon">${getIcon(file.type)}</div>
+            <div class="file-info">
+                <h3>${file.name}</h3>
+                <div class="file-meta">
+                    <span class="badge badge-${file.type}">${file.type.toUpperCase()}</span>
+                    <span>${file.size}</span>
                 </div>
             </div>
-            <a href="./${file.name}" download class="download-btn">
-                <span>Download File</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-            </a>
-        `;
-        grid.appendChild(card);
+        </div>
+        <a href="./${file.name}" download class="download-btn">
+            <span>Download</span>
+        </a>
+    `;
+    return card;
+}
+
+function renderFiles(files) {
+    programsGrid.innerHTML = '';
+    datasetsGrid.innerHTML = '';
+
+    let progCount = 0;
+    let dataCount = 0;
+
+    files.forEach((file) => {
+        if (file.type === 'py' || file.type === 'txt') {
+            programsGrid.appendChild(createCard(file, progCount++));
+        } else {
+            datasetsGrid.appendChild(createCard(file, dataCount++));
+        }
     });
+
+    // Hide sections if empty
+    programsGrid.parentElement.style.display = progCount > 0 ? 'block' : 'none';
+    datasetsGrid.parentElement.style.display = dataCount > 0 ? 'block' : 'none';
 }
 
 function filterFiles() {
     const searchTerm = searchInput.value.toLowerCase();
     const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-    
+
     const filtered = fileList.filter(file => {
         const matchesSearch = file.name.toLowerCase().includes(searchTerm);
         const matchesType = activeFilter === 'all' || file.type === activeFilter;
         return matchesSearch && matchesType;
     });
-    
+
     renderFiles(filtered);
 }
 
@@ -87,4 +100,6 @@ filterBtns.forEach(btn => {
 });
 
 // Initial Render
-renderFiles(fileList);
+if (document.getElementById('programsGrid')) {
+    renderFiles(fileList);
+}

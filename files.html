@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Archive | Stranger Things Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Roboto+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="particles"></div>
+    <header>
+        <h1 class="stranger-title">
+            <span>P</span><span>R</span><span>O</span><span>J</span><span>E</span><span>C</span><span>T</span>
+            <br>
+            <span>A</span><span>R</span><span>C</span><span>H</span><span>I</span><span>V</span><span>E</span>
+        </h1>
+        <p class="subtitle">ENTER THE UPSIDE DOWN OF DATA</p>
+    </header>
+
+    <div class="controls-container">
+        <div class="search-box">
+            <span class="search-icon"></span>
+            <input type="text" id="searchInput" placeholder="Search files...">
+        </div>
+        <div class="filter-group">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="py">Python</button>
+            <button class="filter-btn" data-filter="csv">Data</button>
+        </div>
+    </div>
+
+    <main class="content-wrapper">
+        <section>
+            <h2 class="section-title">Classified Programs</h2>
+            <div id="programsGrid" class="file-grid"></div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Evidence Files (Datasets)</h2>
+            <div id="datasetsGrid" class="file-grid"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
