@@ -1,14 +1,22 @@
-/* Stranger Things Theme */
+/* F1 Racing Theme */
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap');
+
 :root {
-    --bg-color: #000000;
-    --card-bg: rgba(20, 20, 20, 0.85);
-    --text-primary: #e2e2e2;
-    --text-secondary: #a8a8a8;
-    --accent-red: #ff1e1e;
-    --glow-red: rgba(255, 30, 30, 0.6);
-    --border-color: rgba(255, 30, 30, 0.2);
-    --font-title: 'Merriweather', serif;
-    --font-body: 'Roboto Mono', monospace;
+    --f1-red: #FF1801;
+    --f1-black: #15151E;
+    /* Warm asphalt black */
+    --f1-dark-grey: #38383F;
+    --f1-light-grey: #949498;
+    --f1-white: #FFFFFF;
+    --track-border: #D0D0D2;
+
+    --bg-color: #101010;
+    --card-bg: rgba(21, 21, 30, 0.95);
+
+    --font-heading: 'Titillium Web', sans-serif;
+    --font-body: 'Titillium Web', sans-serif;
+
+    --speed-skew: -12deg;
 }
 
 * {
@@ -20,450 +28,394 @@
 body {
     font-family: var(--font-body);
     background-color: var(--bg-color);
-    color: var(--text-primary);
+    color: var(--f1-white);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    /* Carbon Fiber Texture simulation */
+    background-image:
+        linear-gradient(45deg, #1a1a1a 25%, transparent 25%, transparent 75%, #1a1a1a 75%, #1a1a1a),
+        linear-gradient(45deg, #1a1a1a 25%, transparent 25%, transparent 75%, #1a1a1a 75%, #1a1a1a);
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
 }
 
-/* Atmospheric Background */
+/* Speed Lines Background Animation */
 body::before {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 200%;
     height: 100%;
-    background:
-        radial-gradient(circle at 50% 50%, rgba(20, 0, 0, 0) 0%, #000 90%),
-        repeating-linear-gradient(0deg, transparent 0, rgba(0, 0, 0, 0.3) 1px, transparent 2px);
-    background-size: cover, 100% 4px;
+    background: repeating-linear-gradient(90deg,
+            transparent 0,
+            transparent 50px,
+            rgba(255, 255, 255, 0.03) 50px,
+            rgba(255, 255, 255, 0.03) 53px);
+    transform: skewX(-45deg);
+    animation: speedLines 2s linear infinite;
     pointer-events: none;
     z-index: -1;
 }
 
-/* Floating "Upside Down" Particles */
-.particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background-image:
-        radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 3px),
-        radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 2px),
-        radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 3px);
-    background-size: 550px 550px, 350px 350px, 250px 250px;
-    background-position: 0 0, 40px 60px, 130px 270px;
-    animation: floating 60s linear infinite;
-    z-index: -1;
-    opacity: 0.3;
-}
-
-@keyframes floating {
+@keyframes speedLines {
     0% {
-        background-position: 0 0, 40px 60px, 130px 270px;
+        transform: skewX(-45deg) translateX(0);
     }
 
     100% {
-        background-position: 550px 550px, 590px 610px, 680px 820px;
+        transform: skewX(-45deg) translateX(-50px);
     }
 }
 
-/* Typeography */
-header {
-    padding: 5rem 2rem 3rem;
-    text-align: center;
-}
-
-.stranger-title {
-    font-family: var(--font-title);
-    font-weight: 900;
-    font-size: 3.5rem;
-    /* Reduced for better mobile fit, can scale up */
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: var(--font-heading);
     text-transform: uppercase;
-    letter-spacing: -2px;
-    display: inline-block;
-    line-height: 1.1;
-    margin-bottom: 2rem;
-    position: relative;
-    text-shadow: 0 0 10px var(--glow-red), 0 0 20px var(--glow-red);
-    -webkit-text-stroke: 2px var(--accent-red);
-    color: transparent;
-    /* Outline effect */
+    font-style: italic;
+    /* Speed look */
 }
 
-/* Individual letter styling could be done with JSspans but keeping it simple with CSS stroke for now, 
-   improved with the spans in HTML */
-.stranger-title span {
-    display: inline-block;
-    color: transparent;
-    -webkit-text-stroke: 2px var(--accent-red);
-    text-shadow: 0 0 15px var(--glow-red);
+/* Header Section */
+header {
+    padding: 4rem 2rem 2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--f1-red);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 100%);
     position: relative;
 }
 
-.stranger-title span::after {
-    /* Inner glow/fill hint */
-    content: attr(data-text);
-    /* Would need data attrs, skipping for simple visual */
-}
-
-/* Title Bar Lines */
-.stranger-title::before,
-.stranger-title::after {
-    content: '';
-    display: block;
-    height: 3px;
-    background: var(--accent-red);
-    box-shadow: 0 0 10px var(--accent-red);
+header::after {
+    /* Chequered Flag Strip */
+    content: "";
+    position: absolute;
+    bottom: -14px;
+    left: 0;
     width: 100%;
-    margin: 10px 0;
-    transform: scaleX(0);
-    animation: expandLine 1.5s ease-out forwards 0.5s;
+    height: 10px;
+    background-image:
+        linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000),
+        linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000);
+    background-color: #fff;
+    background-size: 10px 10px;
+    background-position: 0 0, 5px 5px;
+    opacity: 0.8;
 }
 
-@keyframes expandLine {
-    to {
-        transform: scaleX(1);
-    }
+.main-title {
+    font-weight: 900;
+    font-size: 4.5rem;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--f1-white);
+    margin-bottom: 0.5rem;
+    padding: 0 1rem;
+    display: inline-block;
+}
+
+.main-title .red-text {
+    color: var(--f1-red);
 }
 
 .subtitle {
-    font-size: 1rem;
-    color: var(--text-primary);
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    opacity: 0.8;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-}
-
-/* Controls */
-.controls-container {
-    max-width: 1000px;
-    margin: 0 auto 3rem;
-    padding: 0 2rem;
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.search-box input {
-    width: 100%;
-    min-width: 300px;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid var(--accent-red);
-    color: var(--accent-red);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    box-shadow: 0 0 5px var(--border-color);
-}
-
-.search-box input:focus {
-    outline: none;
-    box-shadow: 0 0 15px var(--glow-red);
-}
-
-.search-box input::placeholder {
-    color: rgba(255, 30, 30, 0.5);
-}
-
-.filter-btn {
-    background: transparent;
-    border: 1px solid var(--text-secondary);
-    color: var(--text-secondary);
-    padding: 0.75rem 1.5rem;
-    font-family: var(--font-body);
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s;
-}
-
-.filter-btn.active,
-.filter-btn:hover {
-    border-color: var(--accent-red);
-    color: var(--accent-red);
-    box-shadow: 0 0 10px var(--border-color);
-    text-shadow: 0 0 5px var(--glow-red);
-}
-
-/* Compact & Symmetrical Layout */
-.section-title {
-    font-size: 1.5rem;
-    margin: 2rem auto 1.5rem;
-    padding-bottom: 0.5rem;
-    text-align: center;
-    border-bottom: 1px solid var(--accent-red);
-    width: 100%;
-}
-
-.file-grid {
-    display: grid;
-    /* Fixed width columns for perfect alignment */
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.file-card {
-    background: linear-gradient(180deg, #1a1a1a 0%, #000 100%);
-    border: 1px solid #333;
-    padding: 1rem;
-    position: relative;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    min-height: 160px;
-    /* Ensure uniform height */
-    backdrop-filter: blur(5px);
-}
-
-.file-card::before {
-    /* Restore the top red border strip */
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--accent-red);
-    box-shadow: 0 0 5px var(--accent-red);
-    opacity: 0.7;
-    transition: all 0.3s;
-}
-
-.file-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent-red);
-    box-shadow: 0 5px 15px rgba(255, 30, 30, 0.2);
-    z-index: 10;
-}
-
-.file-card:hover::before {
-    opacity: 1;
-    height: 3px;
-    box-shadow: 0 0 10px var(--accent-red);
-}
-
-.card-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.8rem;
-    margin-bottom: auto;
-    /* Push footer down */
-}
-
-.file-icon {
-    font-size: 1.4rem;
-    min-width: 1.4rem;
-    margin-top: 0.2rem;
-    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
-}
-
-.file-info {
-    width: 100%;
-    overflow: hidden;
-}
-
-.file-info h3 {
-    font-size: 0.95rem;
-    margin-bottom: 0.3rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    /* Prevent long names from breaking layout */
-    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--f1-light-grey);
+    letter-spacing: 4px;
     font-weight: 600;
 }
 
-.file-meta {
-    font-size: 0.75rem;
-    color: #888;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+/* Layout Containers */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
-.badge {
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 0.65rem;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.download-btn {
-    margin-top: 1rem;
-    padding: 0.6rem;
-    font-size: 0.8rem;
-    border: 1px solid rgba(255, 30, 30, 0.4);
-    transition: all 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.download-btn:hover {
-    background: var(--accent-red);
-    color: #000;
-    border-color: var(--accent-red);
-    box-shadow: 0 0 10px var(--glow-red);
-}
-
-.content-wrapper {
-    padding-bottom: 4rem;
-}
-
-@media (min-width: 768px) {
-    .stranger-title {
-        font-size: 5rem;
-    }
-}
-
-/* Character Dossiers */
-.character-section {
-    margin: 4rem 0;
-    width: 100%;
-}
-
-.dossier-grid {
+/* Landing Page Specifics */
+.landing-grid {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 3rem;
+    margin-top: 3rem;
     flex-wrap: wrap;
 }
 
-.dossier-card {
-    background: #f0f0f0;
-    color: #1a1a1a;
-    width: 250px;
-    padding: 1rem;
-    transform: rotate(-1deg);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
-    border: 1px solid #999;
-}
-
-.dossier-card:nth-child(even) {
-    transform: rotate(2deg);
-}
-
-.dossier-card:hover {
-    transform: scale(1.05) rotate(0deg);
-    z-index: 10;
-}
-
-.clickable-dossier {
-    cursor: pointer;
-    border: 2px solid var(--accent-red);
-    box-shadow: 0 0 15px rgba(255, 30, 30, 0.3);
-}
-
-.clickable-dossier:hover {
-    box-shadow: 0 0 30px var(--glow-red);
-}
-
-.photo-box {
-    width: 100%;
-    height: 180px;
-    background: #333;
-    margin-bottom: 1rem;
-    position: relative;
+.driver-card {
+    background: var(--f1-black);
+    width: 300px;
+    border-radius: 12px 12px 0 0;
+    /* Rounded top */
+    border-left: 4px solid var(--f1-red);
     overflow: hidden;
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+    /* Cut corner */
+}
+
+.driver-card:hover {
+    transform: translateY(-10px) skewX(-2deg);
+}
+
+.card-image-box {
+    height: 200px;
+    background: #2a2a2a;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 4px solid #fff;
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
-}
-
-.silhouette {
-    width: 100px;
-    height: 100px;
-    background: #111;
-    border-radius: 50%;
     position: relative;
+    border-bottom: 2px solid var(--f1-red);
 }
 
-.silhouette::after {
-    content: '?';
-    color: #333;
-    font-size: 3rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-body);
-}
-
-.stamp {
+.card-image-box::before {
+    content: "P1";
     position: absolute;
     top: 10px;
-    right: -10px;
-    background: rgba(255, 30, 30, 0.8);
-    color: white;
-    padding: 2px 10px;
-    font-size: 0.7rem;
-    transform: rotate(15deg);
-    border: 1px dashed white;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.stamp.warning {
-    background: #ffaa00;
-    color: black;
-    border-color: black;
-}
-
-.dossier-card h3 {
-    font-family: 'Courier New', monospace;
+    right: 15px;
     font-weight: 900;
-    border-bottom: 2px solid #1a1a1a;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.05);
+    font-style: italic;
 }
 
-.dossier-card p {
-    font-family: 'Courier New', monospace;
+.driver-icon {
+    font-size: 5rem;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.card-content p {
+    color: var(--f1-light-grey);
     font-size: 0.9rem;
     line-height: 1.4;
 }
 
-/* Watch Section */
-.watch-section {
-    margin: 4rem 0;
-    text-align: center;
-}
-
-.watch-section p {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    font-family: var(--font-body);
-}
-
-.netflix-btn {
-    display: inline-block;
-    background: #e50914;
-    color: white;
+/* File Grid & Cards */
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    background: var(--f1-black);
     padding: 1rem 2rem;
-    font-family: var(--font-body);
-    font-weight: bold;
-    text-decoration: none;
     border-radius: 4px;
-    transition: all 0.3s;
-    letter-spacing: 1px;
+    border-bottom: 2px solid var(--f1-red);
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--f1-light-grey);
+    color: var(--f1-white);
+    padding: 0.5rem;
+    width: 300px;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    transition: border-color 0.3s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--f1-red);
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid var(--f1-light-grey);
+    color: var(--f1-light-grey);
+    padding: 0.5rem 1.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    transform: skewX(var(--speed-skew));
+    margin-left: 0.5rem;
+    transition: all 0.2s;
+}
+
+.filter-btn span {
+    display: block;
+    transform: skewX(12deg);
+    /* Counter skew text */
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--f1-red);
+    color: #fff;
+    border-color: var(--f1-red);
+}
+
+.section-title {
+    background: var(--f1-red);
+    color: white;
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    transform: skewX(var(--speed-skew));
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.section-title span {
+    display: block;
+    transform: skewX(12deg);
+}
+
+.file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.file-card {
+    background: var(--f1-black);
+    border-right: 4px solid var(--f1-dark-grey);
+    padding: 1.5rem;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.file-card:hover {
+    border-right-color: var(--f1-red);
+    transform: translateX(-5px);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.file-icon {
+    font-size: 2rem;
+}
+
+.file-info h3 {
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.file-meta {
+    font-size: 0.8rem;
+    color: var(--f1-light-grey);
+    text-transform: uppercase;
+    font-weight: 600;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.badge {
+    background: var(--f1-dark-grey);
+    padding: 2px 6px;
+    border-radius: 2px;
+}
+
+.download-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #2a2a2a;
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+    border: 1px solid transparent;
+}
+
+.download-btn:hover {
+    background: var(--f1-red);
+    border-color: var(--f1-red);
+}
+
+/* Links Page */
+.links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.link-item {
+    background: var(--f1-black);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: white;
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.link-item:hover {
+    background: #1f1f2e;
+    border-left-color: var(--f1-red);
+    padding-left: 2rem;
+    /* Slide effect */
+}
+
+.link-number {
+    font-size: 2rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.1);
+    margin-right: 1.5rem;
+    font-style: italic;
+}
+
+.link-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    flex-grow: 1;
+}
+
+.status-badge {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    background: var(--f1-dark-grey);
+    color: #0f0;
+    /* Digital green */
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+/* Utility */
+.netflix-btn {
+    /* Reused as generic big button */
+    display: inline-block;
+    background: var(--f1-red);
+    color: white;
+    padding: 1rem 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-decoration: none;
+    transform: skewX(var(--speed-skew));
+    margin-top: 2rem;
+    transition: transform 0.2s;
 }
 
 .netflix-btn:hover {
-    background: #f40612;
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+    transform: skewX(var(--speed-skew)) scale(1.05);
 }

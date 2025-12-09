@@ -25,10 +25,10 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 
 function getIcon(type) {
     switch (type) {
-        case 'py': return '🐍';
-        case 'csv': return '📊';
-        case 'txt': return '📄';
-        default: return '📁';
+        case 'py': return '🏎️';
+        case 'csv': return '📉';
+        case 'txt': return '📋';
+        default: return '📦';
     }
 }
 
@@ -49,7 +49,7 @@ function createCard(file, index) {
             </div>
         </div>
         <a href="./${file.name}" download class="download-btn">
-            <span>Download</span>
+            <span>ACQUIRE DATA</span>
         </a>
     `;
     return card;

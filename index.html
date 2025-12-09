@@ -4,147 +4,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stranger Things | The Beginning</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@900&family=Roboto+Mono:wght@400;600&display=swap"
-        rel="stylesheet">
+    <title>Grand Prix Archive | F1 Edition</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .landing-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 4rem 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 80vh;
-        }
-
-        .synopsis {
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #ddd;
-            margin-bottom: 3rem;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
-            background: rgba(0, 0, 0, 0.4);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 30, 30, 0.3);
-        }
-
-        .enter-btn {
-            font-size: 1.5rem;
-            padding: 1.5rem 3rem;
-            background: transparent;
-            border: 2px solid var(--accent-red);
-            color: var(--accent-red);
-            text-transform: uppercase;
-            font-family: var(--font-title);
-            font-weight: 900;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.4s ease;
-            box-shadow: 0 0 20px rgba(255, 30, 30, 0.2);
-            animation: pulse 2s infinite;
-        }
-
-        .enter-btn:hover {
-            background: var(--accent-red);
-            color: #000;
-            box-shadow: 0 0 40px var(--glow-red);
-            letter-spacing: 2px;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 20px rgba(255, 30, 30, 0.2);
-            }
-
-            50% {
-                box-shadow: 0 0 30px rgba(255, 30, 30, 0.6);
-            }
-
-            100% {
-                box-shadow: 0 0 20px rgba(255, 30, 30, 0.2);
-            }
-        }
+        /* Embedded overrides if needed, most is in style.css now */
     </style>
 </head>
 
 <body>
-    <div class="particles"></div>
+    <header>
+        <h1 class="main-title">
+            <span class="red-text">GRAND</span> PRIX<br>ARCHIVE
+        </h1>
+        <p class="subtitle">OFFICIAL TELEMETRY & DATA CENTRE</p>
+    </header>
 
-    <div class="landing-container">
-        <header>
-            <h1 class="stranger-title">
-                <span>S</span><span>T</span><span>R</span><span>A</span><span>N</span><span>G</span><span>E</span><span>R</span>
-                <br>
-                <span>T</span><span>H</span><span>I</span><span>N</span><span>G</span><span>S</span>
-            </h1>
-        </header>
+    <div class="container">
 
-        <div class="synopsis">
-            <p><strong>HAWKINS, INDIANA. 1983.</strong></p>
-            <br>
-            <p>A young boy vanishes into thin air. As friends, family and local police search for answers, they are
-                drawn into an extraordinary mystery involving top-secret government experiments, terrifying supernatural
-                forces and one very strange little girl.</p>
-            <br>
-            <p>But there are more secrets hidden in the code. A digital archive of classified programs and evidence
-                files has been discovered.</p>
+        <div style="text-align: center; margin: 4rem 0;">
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; line-height: 1.6; color: #ccc;">
+                <strong>RACE CONTROL:</strong> Access classified telemetry data, track simulation logs, and driver
+                performance files.
+                All data is encrypted for team personnel only.
+            </p>
         </div>
 
-        <section class="character-section">
-            <h2 class="section-title" style="margin-bottom: 2rem;">SUBJECT DOSSIERS</h2>
-            <div class="dossier-grid">
-                <!-- El Card: Links to Dummy Links -->
-                <a href="links.html" style="text-decoration: none; color: inherit;">
-                    <div class="dossier-card clickable-dossier">
-                        <div class="photo-box">
-                            <div class="silhouette el"></div>
-                            <span class="stamp">CLASSIFIED</span>
-                        </div>
-                        <h3>011 / "EL"</h3>
-                        <p>Psychokinetic abilities. Click to intercept signals.</p>
+        <section>
+            <h2 class="section-title"><span>TEAM ACCESS</span></h2>
+            <div class="landing-grid">
+                <!-- Driver 1: Links -->
+                <a href="links.html" class="driver-card">
+                    <div class="card-image-box">
+                        <div class="driver-icon">🏁</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>EXTERNAL<br>LINKS</h3>
+                        <p>Access remote servers and pit wall communications.</p>
                     </div>
                 </a>
 
-                <!-- Hopper Card: Links to Files -->
-                <a href="files.html" style="text-decoration: none; color: inherit;">
-                    <div class="dossier-card clickable-dossier">
-                        <div class="photo-box">
-                            <div class="silhouette hopper"></div>
-                            <span class="stamp">POLICE</span>
-                        </div>
-                        <h3>CHIEF HOPPER</h3>
-                        <p>Hawkins Police Dept. Click to access case files.</p>
+                <!-- Driver 2: Files -->
+                <a href="files.html" class="driver-card">
+                    <div class="card-image-box">
+                        <div class="driver-icon">📂</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>DATA<br>FILES</h3>
+                        <p>Download telemetry logs (CSV) and simulation scripts (PY).</p>
                     </div>
                 </a>
 
-                <!-- Creature Card: Links to Wiki -->
-                <a href="https://en.wikipedia.org/wiki/Stranger_Things#Cast_and_characters" target="_blank"
-                    style="text-decoration: none; color: inherit;">
-                    <div class="dossier-card clickable-dossier">
-                        <div class="photo-box">
-                            <div class="silhouette demogorgon"></div>
-                            <span class="stamp warning">DANGER</span>
-                        </div>
-                        <h3>THE CREATURE</h3>
-                        <p>Origin: Unknown. Hunter. Click for external data.</p>
+                <!-- Wiki Link -->
+                <a href="https://www.formula1.com" target="_blank" class="driver-card">
+                    <div class="card-image-box">
+                        <div class="driver-icon">🏎️</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>OFFICIAL<br>SITE</h3>
+                        <p>Visit Formula1.com for live standings.</p>
                     </div>
                 </a>
             </div>
         </section>
 
-        <section class="watch-section">
-            <h2 class="section-title">TRANSMISSION SOURCE</h2>
-            <p>Monitor the events of Hawkins exclusively on global frequency:</p>
-            <a href="https://www.netflix.com/title/80057281" target="_blank" class="netflix-btn">
-                WATCH ON NETFLIX
+        <section style="text-align: center; margin-top: 5rem;">
+            <h2 class="section-title" style="background: transparent; padding: 0;"><span>LIVE TIMING</span></h2>
+            <p style="margin-bottom: 2rem; color: #888;">Follow the race action live.</p>
+            <a href="https://www.formula1.com/en/f1-live.html" target="_blank" class="netflix-btn">
+                GO TO PADDOCK CLUB
             </a>
         </section>
     </div>
